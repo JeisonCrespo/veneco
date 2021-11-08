@@ -1,5 +1,5 @@
 {
-  "name": "veneco",
+  "name": "bot",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -13,15 +13,28 @@
   "author": "DrixFury",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.5.3",
+    "@discordjs/voice": "^0.7.2",
     "canvas": "^2.8.0",
     "colors": "^1.4.0",
-    "discord.js": "^13.2.0",
+    "discord-logs": "^2.0.1",
+    "discord-ytdl-core": "^5.0.4",
+    "discord.js": "^13.0.1",
     "dotenv": "^10.0.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.0",
     "fs": "^0.0.1-security",
-    "mongoose": "^6.0.11",
-    "path": "^0.12.7"
+    "libsodium-wrappers": "^0.7.9",
+    "megadb": "^3.4.0",
+    "mongoose": "^6.0.4",
+    "ms": "^3.0.0-canary.1",
+    "path": "^0.12.7",
+    "play-dl": "^1.2.6",
+    "star-labs": "^1.1.2",
+    "yt-search": "^2.10.2",
+    "ytdl-core": "^4.9.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.12"
   }
 }

@@ -2,10 +2,11 @@ require("dotenv").config();
 
 const discord = require("discord.js");
 const client = new discord.Client({
-  intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_MEMBERS"],
+  intents: 32767,
+  partials: ["GUILD_MEMBER", "USER"],
 });
 
-//&MONGO
+//% Mongo
 
 const mongoose = require("mongoose");
 const mg = process.env.DB;
@@ -23,16 +24,16 @@ mongoose
     console.log(e);
   });
 
-//&
+//% Mongo
 
-//! codigo
-
+//! CODIGO
 client.commands = new discord.Collection();
 client.events = new discord.Collection();
+client.slash = new discord.Collection();
 
-["commandHandler", "eventHandler"].forEach((file) => {
+["commandHandler", "eventHandler", "slashHandler"].forEach((file) => {
   require(`./handlers/${file}`)(client, discord);
 });
-//!---------------
+//!------
 
 client.login(process.env.DSTOKEN);

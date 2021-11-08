@@ -22,7 +22,7 @@ module.exports = (client, discord) => {
         evn.event = evn.event || file.replace(".js", "");
 
         client.on(evn.event, evn.bind(null, client, discord));
-        console.log(`Evento Cargado: ${file}`);
+        console.log(`Evento Cargado: ${evn.event}`);
       } catch (error) {
         console.log("Error en la carga de eventos");
         console.log(error);

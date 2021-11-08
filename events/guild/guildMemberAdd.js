@@ -1,7 +1,7 @@
-//$PACKAGES
+//%PAQUETES
 const { createCanvas, loadImage } = require("canvas");
 const { join } = require("path");
-//$PACKAGES
+//%PAQUETES
 
 //& MODELOS
 const userModel = require("../../models/userSchema");
@@ -14,7 +14,11 @@ module.exports = async (client, discord, member) => {
     let user = await userModel.create({
       userID: member.id,
       userName: member.displayName,
-      serverID: member.guild.id,
+      logs: [
+        {
+          serverID: member.guild.id,
+        },
+      ],
     });
     user.save();
   } catch (error) {
@@ -23,8 +27,7 @@ module.exports = async (client, discord, member) => {
 
   //& REGISTRAR USUARIO
 
-  //Canvas
-
+  //%CANVAS
   const canvas = createCanvas(1200, 635); //Tamaño de nuestra imagen
   const ctx = canvas.getContext("2d");
 
@@ -37,14 +40,14 @@ module.exports = async (client, discord, member) => {
   ctx.strokeStyle = "#000000";
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-  const name = member.user.username;
+  const name = member.displayName;
 
   if (name.length >= 16) {
     ctx.font = "bold 100px Sans";
     ctx.fillStyle = "#FF9B00";
     ctx.fillText(name, canvas.width / 2, canvas.height / 2 + 100);
   } else {
-    ctx.font = "bold 90px Sans";
+    ctx.font = "bold 130px Sans";
     ctx.fillStyle = "#FF9B00";
     ctx.fillText(name, canvas.width / 2, canvas.height / 2 + 100);
   }
@@ -52,7 +55,7 @@ module.exports = async (client, discord, member) => {
   const server = "Bienvenido a: \n" + member.guild.name;
 
   ctx.font = "bold 75px sans-serif";
-  ctx.fillStyle = "#000000";
+  ctx.fillStyle = "#FFFFFF";
   ctx.fillText(server, canvas.width / 2, canvas.height / 2 - 100);
 
   ctx.beginPath();
@@ -64,7 +67,7 @@ module.exports = async (client, discord, member) => {
     member.user.displayAvatarURL({ format: "png" })
   );
 
-  ctx.drawImage(avatar, 50, canvas.height / 2 - 250, 500, 500);
+  ctx.drawImage(avatar, 65, canvas.height / 2 - 250, 500, 500);
 
   const imagen = new discord.MessageAttachment(canvas.toBuffer(), "img.png");
 
@@ -77,16 +80,16 @@ module.exports = async (client, discord, member) => {
   //& ROL
 
   const channel = member.guild.channels.cache.find(
-    (channel) => channel.name === "bienvenida"
+    (channel) => channel.id === "900495590172016710"
   );
 
   const reglas = member.guild.channels.cache.find(
-    (channel) => channel.name === "tops"
+    (channel) => channel.id === "866487318939697212"
   );
 
   const me = new discord.MessageEmbed()
     .setColor("RED")
-    .setTitle("Bienvenido")
+    .setTitle("Bienvendia")
     .setDescription(`Lee las reglas en ${reglas}`)
     .setImage("attachment://img.png")
     .setTimestamp()
