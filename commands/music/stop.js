@@ -1,8 +1,8 @@
 const { getVoiceConnection } = require("@discordjs/voice");
-
+const { queue } = require("../../global/music");
 module.exports = {
-  name: "pause",
-  description: "Reproducir musica",
+  name: "stop",
+  description: "Para y desconecta el bot de musica",
   async execute(client, message, args, discord) {
     const mvc = message.member.voice.channel.id;
     const pvc = getVoiceConnection(message.guild.id);
@@ -16,6 +16,9 @@ module.exports = {
     const player = getVoiceConnection(message.guild.id).state.subscription
       .player;
 
-    player.pause();
+    queue.delete(message.guild.id);
+
+    player.stop();
+    pvc.destroy();
   },
 };

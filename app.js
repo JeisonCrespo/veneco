@@ -3,7 +3,7 @@ require("dotenv").config();
 const discord = require("discord.js");
 const client = new discord.Client({
   intents: 32767,
-  partials: ["GUILD_MEMBER", "USER"],
+  partials: ["GUILD_MEMBER", "USER", "CHANNEL", "MESSAGE", "REACTION"],
 });
 
 //% Mongo

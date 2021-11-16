@@ -1,8 +1,10 @@
 const { getVoiceConnection } = require("@discordjs/voice");
 
+const { previousSong } = require("../../global/music");
+
 module.exports = {
-  name: "pause",
-  description: "Reproducir musica",
+  name: "prev",
+  description: "regresa de cancion",
   async execute(client, message, args, discord) {
     const mvc = message.member.voice.channel.id;
     const pvc = getVoiceConnection(message.guild.id);
@@ -16,6 +18,12 @@ module.exports = {
     const player = getVoiceConnection(message.guild.id).state.subscription
       .player;
 
-    player.pause();
+    previousSong(
+      message.guild.id,
+      player.state.resource.metadata.key,
+      message,
+      player,
+      pvc
+    );
   },
 };
